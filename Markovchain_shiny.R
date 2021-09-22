@@ -62,7 +62,7 @@ if (interactive()) {
                               style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
           )
           ,column(2,
-                  textOutput("text"),
+                  tableOutput("static"),
                   verbatimTextOutput("verb")
                   
           )
@@ -105,11 +105,10 @@ if (interactive()) {
     
     observeEvent(input$calculate, {
       total <- calculate(mc=v$data)
-      output$text <- renderText({ total })
-      
+      output$static <- renderTable(head(total), digits = 5,width = "auto",align = "l")
     })
     
-    output$table <- renderTable({ total })
+    
     
     
     output$plot <- renderPlot({
